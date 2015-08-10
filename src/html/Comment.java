@@ -15,9 +15,16 @@
  *  along with HTML.  If not, see <http://www.gnu.org/licenses/>.
  *  (c) copyright Desmond Schmidt 2014
  */
+package html;
 
 /**
- * This package is just to define some simple methods for
- * generating HTML economically and cleanly for testing purposes.
+ * Represent a literal section of HTML enclosed in comments
+ * @author desmond
  */
-package html;
+public class Comment extends Literal
+{
+    public String toString()
+    {
+        return "<!--"+super.toString()+"-->";
+    }
+}

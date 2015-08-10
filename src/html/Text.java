@@ -15,9 +15,30 @@
  *  along with HTML.  If not, see <http://www.gnu.org/licenses/>.
  *  (c) copyright Desmond Schmidt 2014
  */
+package html;
 
 /**
- * This package is just to define some simple methods for
- * generating HTML economically and cleanly for testing purposes.
+ * Simple class to represent a Text node
+ * @author desmond
  */
-package html;
+public class Text extends Element
+{
+    String content;
+    public Text()
+    {
+        // empty constructor
+    }
+    public Text( String content )
+    {
+        this.content = content;
+    }
+    /**
+     * Express ourselves as a String for outputting
+     * @return a String
+     */
+    @Override
+    public String toString()
+    {
+        return content;
+    }
+}

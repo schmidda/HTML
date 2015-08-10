@@ -15,9 +15,34 @@
  *  along with HTML.  If not, see <http://www.gnu.org/licenses/>.
  *  (c) copyright Desmond Schmidt 2014
  */
+package html;
+
 
 /**
- * This package is just to define some simple methods for
- * generating HTML economically and cleanly for testing purposes.
+ * A pseudo-Element containing valid unparsed HTML
+ * @author desmond
  */
-package html;
+public class Literal extends Element
+{
+    public Literal()
+    {
+        super("");
+    }
+    public Literal( String content )
+    {
+        super("");
+        addText(content);
+    }
+    public void addChild( Element child )
+    {
+        super.addChild(child);
+    }
+    /**
+     * We can't add an attribute because we are only text
+     * @param name ignored
+     * @param value ignored
+     */
+    public void addAttribute( String name, String value )
+    {
+    }
+}

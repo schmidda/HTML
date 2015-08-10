@@ -1,21 +1,20 @@
 /*
- * This file is part of TILT.
+ * This file is part of HTML.
  *
- *  TILT is free software: you can redistribute it and/or modify
+ *  HTML is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 2 of the License, or
  *  (at your option) any later version.
  *
- *  TILT is distributed in the hope that it will be useful,
+ *  HTML is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with TILT.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with HTML.  If not, see <http://www.gnu.org/licenses/>.
  *  (c) copyright Desmond Schmidt 2014
  */
-
 package html;
 import java.util.ArrayList;
 /**
@@ -33,19 +32,21 @@ public class Head
      */
     public Head()
     {
-        scripts = new ArrayList<>();
-        metas = new ArrayList<>();
-        links = new ArrayList<>();
+        scripts = new ArrayList<Script>();
+        metas = new ArrayList<EmptyElement>();
+        links = new ArrayList<EmptyElement>();
         css = new Element("style");
         css.addAttribute("type","text/css");
     }
     /**
      * Add a JQuery reference to an external script
      * @param version the version required
+     * @param dir the directory in which the local jquery resides or null
+     * @paramlocal true if the copy of jquery is in the local directory
      */
-    public void addJQuery( String version )
+    public void addJQuery( String version, String dir, boolean local )
     {
-        scripts.add( new JQueryRef(version) );
+        scripts.add( new JQueryRef(version,dir,local) );
     }
     /**
      * Add a script with contents
@@ -115,7 +116,7 @@ public class Head
         }
         for ( int i=0;i<scripts.size();i++ )
             sb.append( scripts.get(i) );
-        if ( css.contents.length()>0 )
+        if ( !css.isEmpty() )
             sb.append(css);
         sb.append("</head>\n");
         return sb.toString();
